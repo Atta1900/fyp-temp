@@ -3,11 +3,11 @@ import Application from "src/views/pages/appforms/Application";
 import BusinessDetails from "src/views/pages/appforms/BusinessDetails";
 import ContactInfo from "src/views/pages/appforms/ContactInfo";
 import DetailsOfReferences from "src/views/pages/appforms/DetailsOfReference";
-import DocumentSubmission from "src/views/pages/appforms/DocumentSubmission";
 import EmployementDetail from "src/views/pages/appforms/EmployementDetail";
 import IncomeDetails from "src/views/pages/appforms/IncomeDetails";
 import { CButton, CForm } from "@coreui/react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const FormTitles = ["Personal Information", "ContactInfo", "Employement Details", "Income Details", "Business Details", "DetailRefrence", "Documents"];
 // making the array object to store the attribute data then pass this data to api 
@@ -222,11 +222,11 @@ function Forms() {
         R2_Email: '',
         R2_CellNumber: '',
         R2_Relationship: '',
-        bankstatment: '',
-        nicpic: '',
-        kebill: '',
-        gassbill: '',
-        profilePic: '',
+        // bankStatementFile: '',
+        // nicPicFile: '',
+        // keBillFile: '',
+        // gasBillFile: '',
+        // profilePicFile: '',
 
     });
 
@@ -249,6 +249,8 @@ function Forms() {
     //       // handle error
     //     });
     //   };
+    const nav = useNavigate()
+    const navform2 = useNavigate()
 
     const PageDisplay = () => {
         if (page === 0) {
@@ -261,13 +263,13 @@ function Forms() {
             return <IncomeDetails formData={formData} setFormData={setFormData} />;
         } else if (page === 4) {
             return <BusinessDetails formData={formData} setFormData={setFormData} />;
-        } else if (page === 5) {
-            return <DetailsOfReferences formData={formData} setFormData={setFormData} />;
-        } else if (page === 6) {
-            return <DocumentSubmission formData={formData} setFormData={setFormData} />;
         } else {
-            return <>Please open the DashBoard</>
+            return <DetailsOfReferences formData={formData} setFormData={setFormData} />;
         }
+        // } else {
+        //     navform2 = ('/dashboard')
+
+        // }
         // } else {
         //     return <Docsubmission formData={formData} setFormData={setFormData} />;
         // }
@@ -298,14 +300,18 @@ function Forms() {
                                     // setPage((currPage) => currPage + 1);
                                     alert("FORM SUBMITTED");
                                     e.preventDefault();
-                                    axios.post("http://127.0.0.1:8000/api/ApplicationForm", formData)
+                                    axios.post("http://127.0.0.1:8000/api/ApplicationForm", FormData)
                                         .then(response => {
                                             console.log(response);
                                             // console.target.reset();
                                         })
                                         .catch(error => {
                                             console.log(error);
-                                        });
+                                        }).then(
+                                            {
+
+                                            }
+                                        );
                                 }
                             }}
                         >

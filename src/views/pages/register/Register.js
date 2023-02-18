@@ -40,7 +40,7 @@ const Register = () => {
       await axios.post('http://localhost:8000/api/register', { username, email, password })
       setSuccess(true)
       setTimeout(() => {
-        navform1('/form0')
+        navform1('/form1')
       }, 2000)
     } catch (error) {
       setError(true)
